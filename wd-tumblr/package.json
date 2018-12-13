@@ -31,6 +31,9 @@
       "git add"
     ]
   },
+  "jest": {
+  "snapshotSerializers": ["enzyme-to-json/serializer"]
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -39,5 +42,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0"
+  }
 }
