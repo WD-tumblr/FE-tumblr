@@ -4,9 +4,9 @@ import './NavigationBar.scss';
 const NavigationBar = () => (
   // eslint-disable-next-line no-unused-expressions
   <nav className="navigationBar">
-    <NavLink to="/">DashBoard</NavLink>
+    <NavLink to="/dashboard">Dash</NavLink>
     <NavLink to="/explore">Explore</NavLink>
-    <NavLink to="/InBox">InBox</NavLink>
+    <NavLink to="/inbox">InBox</NavLink>
   </nav>
 );
 

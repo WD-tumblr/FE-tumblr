@@ -4,10 +4,10 @@ import DashBoard from './DashBoard';
 import Explore from './Explore';
 import InBox from './InBox';
 import Header from './components/Header';
-
+import './App.scss';
 const App = () => (
   <Router>
-    <div>
+    <div className="container">
       <Header />
       <Switch>
         <Route exact path="/" component={DashBoard} />
