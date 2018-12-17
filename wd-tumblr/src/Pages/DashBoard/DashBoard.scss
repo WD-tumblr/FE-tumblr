@@ -7,32 +7,83 @@
 
 .postbar {
   display: flex;
+  margin-bottom: 20px;
+  & nav {
+    background: #fff;
+  }
 }
 
-.avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 3px;
-    margin-right: 21px;
-}
 
 .posts {
   display: flex;
 }
 
-.postbuttons {
-  & i {
+
+
+.postbutton {
+ & a {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 75px;
+   height: 95px;
+ }
+ & i {
     font-family: Tumblr-Icons;
     width: 48px;
     height: 48px;
     display: inline-block;
+    font-size: 48px;
   }
 }
 
 .icon__post-text {
+  color: #444;
+  
   &::before {
     content: '\EA77';
     display: inline-block;
     line-height: 1;
+   
   }
+}
+
+
+.postform__container {
+  margin-top: 146px;
+  display: flex;
+  position: absolute;
+}
+
+.postform {
+  background: #fff;
+  color: #444;
+  width: 500px;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  padding: 20px;
+  input {
+    width: 100%;
+    height: 48px;
+    border: none;
+  }
+  textarea {
+     width: 100%;
+     border: none;
+     overflow: auto;
+     outline: none;
+      resize: none; 
+  }
+}
+
+
+.postform__header {
+  display: flex;
+  justify-content: space-between;
+ 
+}
+
+.form__toolbar {
+  display: flex;
+  justify-content: space-between;
 }
