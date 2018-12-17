@@ -8,12 +8,14 @@ import './App.scss';
 const App = () => (
   <Router>
     <div className="container">
-      <Header />
-      <Switch>
-        <Route exact path="/" component={DashBoard} />
-        <Route path="/explore" component={Explore} />
-        <Route path="/inBox" component={InBox} />
-      </Switch>
+     <Header />
+     <div className="main__container">
+        <Switch>
+          <Route exact path="/" component={DashBoard} />
+          <Route path="/explore" component={Explore} />
+          <Route path="/inBox" component={InBox} />
+        </Switch>
+      </div>
     </div>
   </Router>
 );
