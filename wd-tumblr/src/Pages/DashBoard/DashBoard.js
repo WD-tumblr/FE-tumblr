@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Modal from '../../components/Modal'
 import Avatar from '../../components/Avatar';
-import {saveLocalStorage, getLocalStorage} from  '../../helper'
+import {saveLocalStorage, getLocalStorage, toggleState} from  '../../helper'
 import './DashBoard.scss';
 
 
@@ -14,9 +14,8 @@ class DashBoard extends Component {
   }
   toggleShowState = () => {
     const {show} = this.state;
-    this.setState({
-      show: !show
-    })
+    const toggleShow = toggleState('show')
+    this.setState(toggleShow)
   }
   hideModal = ()=> {
     this.setState({
