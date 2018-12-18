@@ -1,7 +1,5 @@
 import React from 'react';
 
-const Explore = props => {
-  return <div>Explore </div>;
-};
+const Explore = props => <div>Explore </div>;
 
 export default Explore;
