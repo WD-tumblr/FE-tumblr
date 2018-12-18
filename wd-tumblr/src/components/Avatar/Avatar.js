@@ -1,14 +1,10 @@
 import React from 'react';
 import './Avatar.scss';
 
-const Logo = ({ img, alt }) => {
-  return (
-    <div className="avatar">
-      <a className="avatarLink">
-        
-      </a>
-    </div>
-  );
-};
+const Logo = () => (
+  <div className="avatar">
+    <a className="avatarLink" />
+  </div>
+);
 
 export default Logo;

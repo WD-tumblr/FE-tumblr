@@ -1,5 +1,5 @@
 import React from 'react';
 
-const InBox = props => <div>InBox </div>;
+const InBox = () => <div>InBox </div>;
 
 export default InBox;

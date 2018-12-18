@@ -29,10 +29,6 @@ class DashBoard extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { titleInput, tagInput, contentInput } = e.target;
-    console.log(e.target.value);
-    console.log(titleInput, tagInput, contentInput);
-    // 한꺼번에 value를 얻어올 방법 없으려나???
-    console.log(titleInput.value, tagInput.value, contentInput.value);
     if (titleInput.value && contentInput.value) {
       const postData = {
         title: titleInput.value,
