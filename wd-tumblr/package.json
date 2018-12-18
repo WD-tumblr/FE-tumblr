@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "eslint-config-airbnb": "^17.1.0",
     "husky": "^1.2.0",
     "lint-staged": "^8.1.0",
     "node-sass": "^4.11.0",
@@ -32,7 +33,9 @@
     ]
   },
   "jest": {
-  "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,6 +48,7 @@
   ],
   "devDependencies": {
     "babel-jest": "^23.6.0",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "prettier-eslint": "^8.8.2"
   }
 }
