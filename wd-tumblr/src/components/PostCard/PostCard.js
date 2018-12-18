@@ -1,8 +1,7 @@
 import React from 'react';
-import './Logo.scss';
-import logo from '../../assets/images/tumblrLogo.png';
+import './PostCard.scss';
 
-const Logo = ({ img, alt }) => (
+const PostCard = ({ img, alt }) => (
   <div>
     <h1 className="logo">
       <a className="logoLink">
@@ -12,4 +11,4 @@ const Logo = ({ img, alt }) => (
   </div>
 );
 
-export default Logo;
+export default PostCard;
