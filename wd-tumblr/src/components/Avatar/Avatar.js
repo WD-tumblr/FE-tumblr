@@ -2,12 +2,12 @@ import React from 'react';
 import './Avatar.scss';
 import DefaultAvatar from '../../assets/images/octahedron.png';
 
-const Logo = () => (
+const Avatar = ({ avatarImage = DefaultAvatar }) => (
   <div className="avatar">
     <a className="avatarLink">
-      <img src={DefaultAvatar} />
+      <img src={avatarImage} />
     </a>
   </div>
 );
 
-export default Logo;
+export default Avatar;
