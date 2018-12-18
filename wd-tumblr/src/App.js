@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import DashBoard from './DashBoard';
+import DashBoard from './Pages/DashBoard';
 import Explore from './Explore';
 import InBox from './InBox';
 import Header from './components/Header';

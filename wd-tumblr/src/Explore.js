@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Explore = props => <div>Explore </div>;
+const Explore = () => <div>Explore </div>;
 
 export default Explore;
