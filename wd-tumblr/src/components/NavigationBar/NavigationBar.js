@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavigationBar.scss';
+
 const NavigationBar = () => (
   // eslint-disable-next-line no-unused-expressions
   <nav className="navigationBar">

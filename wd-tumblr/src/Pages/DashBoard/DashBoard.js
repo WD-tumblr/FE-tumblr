@@ -36,6 +36,7 @@ class DashBoard extends Component {
         tag: tagInput.value,
       };
       this.savePostData(postData);
+      this.hideModal();
     }
   }
 
