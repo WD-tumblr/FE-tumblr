@@ -1,7 +1,5 @@
 import React from 'react';
 
-const InBox = props => {
-  return <div>InBox </div>;
-};
+const InBox = props => <div>InBox </div>;
 
 export default InBox;

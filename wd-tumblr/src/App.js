@@ -6,12 +6,11 @@ import InBox from './InBox';
 import Header from './components/Header';
 import './App.scss';
 
-
 const App = () => (
   <Router>
     <div className="container">
-     <Header />
-     <div className="main__container">
+      <Header />
+      <div className="main__container">
         <Switch>
           <Route exact path="/" component={DashBoard} />
           <Route path="/explore" component={Explore} />
