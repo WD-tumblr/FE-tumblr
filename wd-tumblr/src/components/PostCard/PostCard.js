@@ -4,7 +4,7 @@ import './PostCard.scss';
 
 const PostCardList = (
   {
-    userId, avatarImg, cardImg, cardImgAlt, cardTitle, cardBodytext, cardTags,
+    userId, avatarImg, cardImg, cardImgAlt, title, content, tags,
   },
 ) => (
   <div className="postCard__container">
@@ -15,7 +15,7 @@ const PostCardList = (
       </div>
       <div className="postCard__content">
         <div className="postCard__title-container">
-          <h2 className="postCard__heading">{cardTitle}</h2>
+          <h2 className="postCard__heading">{title}</h2>
         </div>
         {cardImg && (
           <div className="postCard__image-container">
@@ -23,9 +23,9 @@ const PostCardList = (
           </div>
         )}
         <div className="postCard__bodyText">
-          <p>{cardBodytext}</p>
+          <p>{content}</p>
         </div>
-        {cardTags && (<div className="postCard__tags" />)}
+        {tags && (<div className="postCard__tags">{tags}</div>)}
       </div>
       <div className="postCard__footer" />
     </div>

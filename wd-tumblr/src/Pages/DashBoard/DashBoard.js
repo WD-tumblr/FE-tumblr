@@ -10,7 +10,13 @@ import PostCardList from '../../components/PostCardList';
 class DashBoard extends Component {
   state = {
     show: false,
-    userId: 'userId',
+    userId: 'Dali',
+    postCards: [],
+  }
+
+  componentDidMount() {
+    const STORAGE_KEY = 'POST_KEY';
+    getLocalStorage(STORAGE_KEY) && this.setState({ postCards: [...getLocalStorage(STORAGE_KEY)] });
   }
 
   handleOnChange = (e) => {
@@ -34,9 +40,13 @@ class DashBoard extends Component {
   }
 
   handleSubmit = (e) => {
-    const { title, content, tags } = this.state;
+    const {
+      userId, title, content, tags,
+    } = this.state;
     if (title && content) {
-      const postData = { title, content, tags };
+      const postData = {
+        userId, title, content, tags,
+      };
       this.savePostData(postData);
       this.hideModal();
     }
@@ -44,9 +54,10 @@ class DashBoard extends Component {
 
   savePostData = (postData) => {
     const STORAGE_KEY = 'POST_KEY';
-    const lastData = getLocalStorage(STORAGE_KEY) || [];
-    lastData.push(postData);
+    let lastData = getLocalStorage(STORAGE_KEY) || [];
+    lastData = [postData, ...lastData];
     saveLocalStorage(STORAGE_KEY, lastData);
+    this.setState({ postCards: [...lastData] });
   }
 
   render() {
@@ -70,7 +81,7 @@ class DashBoard extends Component {
               </ul>
             </nav>
           </div>
-          <PostCardList />
+          <PostCardList postCards={this.state.postCards} />
         </section>
         <Modal show={this.state.show} onClick={this.toggleShowState}>
           <section className="postform__container">
