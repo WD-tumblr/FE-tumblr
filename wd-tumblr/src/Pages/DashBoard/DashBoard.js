@@ -3,11 +3,19 @@ import Modal from '../../components/Modal';
 import Avatar from '../../components/Avatar';
 import { saveLocalStorage, getLocalStorage, toggleState } from '../../helper';
 import './DashBoard.scss';
-
+import Form from '../../components/Form';
+import Input from '../../components/Input';
+import PostCardList from '../../components/PostCardList';
 
 class DashBoard extends Component {
   state = {
     show: false,
+    userId: 'userId',
+  }
+
+  handleOnChange = (e) => {
+    const { name, value } = e.target;
+    this.setState(() => ({ [name]: value }));
   }
 
   handlePostButtonClicked = () => {
@@ -15,7 +23,6 @@ class DashBoard extends Component {
   }
 
   toggleShowState = () => {
-    const { show } = this.state;
     const toggleShow = toggleState('show');
     this.setState(toggleShow);
   }
@@ -27,14 +34,9 @@ class DashBoard extends Component {
   }
 
   handleSubmit = (e) => {
-    e.preventDefault();
-    const { titleInput, tagInput, contentInput } = e.target;
-    if (titleInput.value && contentInput.value) {
-      const postData = {
-        title: titleInput.value,
-        content: contentInput.value,
-        tag: tagInput.value,
-      };
+    const { title, content, tags } = this.state;
+    if (title && content) {
+      const postData = { title, content, tags };
       this.savePostData(postData);
       this.hideModal();
     }
@@ -68,19 +70,15 @@ class DashBoard extends Component {
               </ul>
             </nav>
           </div>
-          <ul className="posts">
-            <li>
-              <Avatar />
-            </li>
-            <li>
-              <div className="avatar" />
-            </li>
-          </ul>
+          <PostCardList />
         </section>
         <Modal show={this.state.show} onClick={this.toggleShowState}>
           <section className="postform__container">
             <Avatar />
-            <form className="postform" onSubmit={this.handleSubmit}>
+            <Form
+              className="postform"
+              onSubmit={this.handleSubmit}
+            >
               <div className="postform__header">
                 <div className="dropdown">
                   <span>userId</span>
@@ -89,28 +87,38 @@ class DashBoard extends Component {
                   <span>SettingButton</span>
                 </div>
               </div>
-              <input
+              <Input
                 type="text"
                 placeholder="제목"
-                name="titleInput"
+                name="title"
+                onChange={this.handleOnChange}
+                required
               />
               <textarea
                 type="text"
                 placeholder="여기에 내용을 쓰세요"
-                name="contentInput"
+                name="content"
+                onChange={this.handleOnChange}
+                required
               />
-              <input
+              <Input
                 type="text"
                 placeholder="#태그"
-                name="tagInput"
+                name="tags"
+                onChange={this.handleOnChange}
               />
               <div className="form__toolbar">
-                <button onClick={this.hideModal}>닫기</button>
+                <button
+                  onClick={this.hideModal}
+                >
+                닫기
+                </button>
                 <button>포스팅</button>
               </div>
-            </form>
+            </Form>
           </section>
         </Modal>
+
       </div>
     );
   }
