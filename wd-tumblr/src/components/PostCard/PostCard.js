@@ -27,7 +27,31 @@ const PostCardList = (
         </div>
         {tags && (<div className="postCard__tags">{tags}</div>)}
       </div>
-      <div className="postCard__footer" />
+      <div className="postCard__footer">
+        <div className="notes__container" />
+        <ul className="postCard__buttons">
+          <li className="postCard__button">
+            <a href="">
+              <i className="postCard__icon-share" />
+            </a>
+          </li>
+          <li className="postCard__button">
+            <a href="">
+              <i className="postCard__icon-reply" />
+            </a>
+          </li>
+          <li className="postCard__button">
+            <a href="">
+              <i className="postCard__icon-reblog" />
+            </a>
+          </li>
+          <li className="postCard__button">
+            <a href="">
+              <i className="postCard__icon-options" />
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 );
