@@ -1,18 +1,36 @@
-.logo {
-  margin: 0;
-  margin-right: -3px;
-  // background: #000;
+.postCard__container {
+  display: flex;
+  margin-bottom: 20px;
+  
+}
+.postCard__header {
+  .userId {
+  font-size: 14px;
+  color: #444;
+  }
+  margin-bottom: 13px;
 }
 
-.logoLink {
-  width: 22px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-right: 18px;
-  box-sizing: content-box;
-  padding-left: 2px;  
-  img {
-    max-width: 100%;
+
+.postCard {
+  width: 540px;
+  font-size: 14px;
+  background: #fff;
+  padding: 15px 20px 20px 20px;
+  word-wrap: break-word;
+  border-radius: 3px;
+
+}
+
+.postCard__heading {
+  margin-top: 0;
+  font-size: 36px;
+  line-height: 47px;
+  margin-bottom: 10px;
+}
+
+.postCard__bodyText {
+  p {
+    margin: 0;
   }
 }

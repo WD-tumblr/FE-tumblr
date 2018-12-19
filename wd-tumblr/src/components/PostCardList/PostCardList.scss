@@ -1,0 +1,18 @@
+.logo {
+  margin: 0;
+  margin-right: -3px;
+  // background: #000;
+}
+
+.logoLink {
+  width: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 18px;
+  box-sizing: content-box;
+  padding-left: 2px;  
+  img {
+    max-width: 100%;
+  }
+}

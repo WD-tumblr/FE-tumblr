@@ -2,10 +2,10 @@ import React from 'react';
 import './Avatar.scss';
 import DefaultAvatar from '../../assets/images/octahedron.png';
 
-const Avatar = ({ avatarImage = DefaultAvatar }) => (
+const Avatar = ({ avatarImg = DefaultAvatar }) => (
   <div className="avatar">
     <a className="avatarLink">
-      <img src={avatarImage} />
+      <img src={avatarImg} />
     </a>
   </div>
 );
