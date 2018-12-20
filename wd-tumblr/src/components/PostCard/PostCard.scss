@@ -98,6 +98,7 @@
 }
 
 .postCard__icon-options {
+  position: relative;
  &::before {
     content: '\EA9A';
     display: inline-block;

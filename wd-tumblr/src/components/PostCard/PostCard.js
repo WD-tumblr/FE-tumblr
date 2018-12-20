@@ -1,7 +1,11 @@
 import React from 'react';
 import Avatar from '../Avatar';
+import Popover from '../Popover';
 import './PostCard.scss';
 
+const handleOptionsButtonClicked = (e) => {
+  e.preventDefault();
+};
 const PostCardList = (
   {
     userId, avatarImg, cardImg, cardImgAlt, title, content, tags,
@@ -47,7 +51,9 @@ const PostCardList = (
           </li>
           <li className="postCard__button">
             <a href="">
-              <i className="postCard__icon-options" />
+              <i className="postCard__icon-options" onClick={handleOptionsButtonClicked}>
+                <Popover />
+              </i>
             </a>
           </li>
         </ul>
@@ -55,5 +61,6 @@ const PostCardList = (
     </div>
   </div>
 );
+
 
 export default PostCardList;
