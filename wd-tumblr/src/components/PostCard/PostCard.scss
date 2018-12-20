@@ -46,13 +46,7 @@
 }
 
 .postCard__button {
- a {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   width: 24px;
-   height: 24px;
- }
+ 
  i {
     font-family: tumblr-icons,Blank;
     -webkit-font-smoothing: antialiased;
@@ -70,8 +64,15 @@
     color: #8f8f8f;
     margin-top: -1px;
   }
- 
 }
+
+.postCard__button-link {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 24px;
+   height: 24px;
+ }
 
 .postCard__icon-share {
  &::before {

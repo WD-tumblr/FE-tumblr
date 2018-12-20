@@ -1,6 +1,8 @@
 import React from 'react';
 import Avatar from '../Avatar';
 import './PostCard.scss';
+import PopUp from '../PopUp';
+import ReplyBox from '../ReplyBox';
 
 const PostCardList = (
   {
@@ -31,22 +33,25 @@ const PostCardList = (
         <div className="notes__container" />
         <ul className="postCard__buttons">
           <li className="postCard__button">
-            <a href="">
+            <a className="postCard__button-link">
               <i className="postCard__icon-share" />
             </a>
           </li>
           <li className="postCard__button">
-            <a href="">
+            <a className="postCard__button-link">
               <i className="postCard__icon-reply" />
+              <PopUp>
+                <ReplyBox />
+              </PopUp>
             </a>
           </li>
           <li className="postCard__button">
-            <a href="">
+            <a className="postCard__button-link" href="">
               <i className="postCard__icon-reblog" />
             </a>
           </li>
           <li className="postCard__button">
-            <a href="">
+            <a className="postCard__button-link" href="">
               <i className="postCard__icon-options" />
             </a>
           </li>
