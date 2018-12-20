@@ -3,10 +3,17 @@ import Avatar from '../Avatar';
 import Popover from '../Popover';
 import './PostCard.scss';
 
-const handleOptionsButtonClicked = (e) => {
-  e.preventDefault();
-};
+
 class PostCardList extends Component {
+  state={
+    isOpen: false,
+  }
+
+  handleOptionsButtonClicked = (e) => {
+    e.preventDefault();
+    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+  };
+
   // {
   //   userId, avatarImg, cardImg, cardImgAlt, title, content, tags,
   // },
@@ -52,8 +59,8 @@ class PostCardList extends Component {
               </li>
               <li className="postCard__button">
                 <a href="">
-                  <i className="postCard__icon-options" onClick={handleOptionsButtonClicked}>
-                    <Popover />
+                  <i className="postCard__icon-options" onClick={this.handleOptionsButtonClicked}>
+                    <Popover isOpen={this.state.isOpen} />
                   </i>
                 </a>
               </li>
