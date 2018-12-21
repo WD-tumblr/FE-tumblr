@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import Avatar from '../Avatar';
 import Popover from '../Popover';
 import './PostCard.scss';
+import { getLocalStorage, saveLocalStorage } from '../../helper';
+import PostCardList from '../PostCardList/PostCardList';
 
 
-class PostCardList extends Component {
+class PostCard extends Component {
   state={
     isOpen: false,
   }
@@ -14,14 +16,18 @@ class PostCardList extends Component {
     this.setState(prevState => ({ isOpen: !prevState.isOpen }));
   };
 
-  handleDeletePost=(e) => {
-    console.log(e);
+  handleDeletePost=() => {
+    const STORAGE_KEY = 'POST_KEY';
+    const filterdCardList = this.deleteCardById(STORAGE_KEY, this.props.uniqueId);
+    saveLocalStorage(STORAGE_KEY, filterdCardList);
+    this.setState({ postCards: filterdCardList });
+    this.props.handleSetPostCards();
   }
 
-  // {
-  //   userId, avatarImg, cardImg, cardImgAlt, title, content, tags,
-  // },
+  deleteCardById=(key, id) => getLocalStorage(key).filter(v => v.uniqueId !== id)
+
   render() {
+    console.log('rerender');
     return (
       <div className="postCard__container">
         <Avatar />
@@ -77,4 +83,4 @@ class PostCardList extends Component {
 }
 
 
-export default PostCardList;
+export default PostCard;

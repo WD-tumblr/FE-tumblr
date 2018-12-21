@@ -16,6 +16,10 @@ class DashBoard extends Component {
   }
 
   componentDidMount() {
+    this.setPostCards();
+  }
+
+  setPostCards() {
     const STORAGE_KEY = 'POST_KEY';
     getLocalStorage(STORAGE_KEY) && this.setState({ postCards: [...getLocalStorage(STORAGE_KEY)] });
   }
@@ -83,7 +87,7 @@ class DashBoard extends Component {
               </ul>
             </nav>
           </div>
-          <PostCardList postCards={this.state.postCards} />
+          <PostCardList postCards={this.state.postCards} handleSetPostCards={this.setPostCards.bind(this)} />
         </section>
         <Modal show={this.state.show} onClick={this.toggleShowState}>
           <section className="postform__container">
