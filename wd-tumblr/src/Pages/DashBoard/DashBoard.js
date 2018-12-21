@@ -6,6 +6,7 @@ import './DashBoard.scss';
 import Form from '../../components/Form';
 import Input from '../../components/Input';
 import PostCardList from '../../components/PostCardList';
+import shortid from 'shortid';
 
 class DashBoard extends Component {
   state = {
@@ -43,9 +44,10 @@ class DashBoard extends Component {
     const {
       userId, title, content, tags,
     } = this.state;
+    const uniqueId = shortid.generate();
     if (title && content) {
       const postData = {
-        userId, title, content, tags,
+        uniqueId, userId, title, content, tags,
       };
       this.savePostData(postData);
       this.hideModal();

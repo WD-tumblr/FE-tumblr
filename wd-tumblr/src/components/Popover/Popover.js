@@ -13,7 +13,7 @@ class Popover extends Component {
       <div className="popover__container">
         <ul>
           <li><span className="popover__container-span">Edit</span></li>
-          <li><span className="popover__container-span">Delete</span></li>
+          <li><span className="popover__container-span" onClick={this.props.deletePost}>Delete</span></li>
         </ul>
       </div>
     );

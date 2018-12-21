@@ -14,6 +14,10 @@ class PostCardList extends Component {
     this.setState(prevState => ({ isOpen: !prevState.isOpen }));
   };
 
+  handleDeletePost=(e) => {
+    console.log(e);
+  }
+
   // {
   //   userId, avatarImg, cardImg, cardImgAlt, title, content, tags,
   // },
@@ -21,7 +25,7 @@ class PostCardList extends Component {
     return (
       <div className="postCard__container">
         <Avatar />
-        <div className="postCard">
+        <div className="postCard" data-id={this.props.uniqueId}>
           <div className="postCard__header">
             <span className="userId">{this.props.userId}</span>
           </div>
@@ -60,7 +64,7 @@ class PostCardList extends Component {
               <li className="postCard__button">
                 <a href="">
                   <i className="postCard__icon-options" onClick={this.handleOptionsButtonClicked}>
-                    <Popover isOpen={this.state.isOpen} />
+                    <Popover isOpen={this.state.isOpen} deletePost={this.handleDeletePost} />
                   </i>
                 </a>
               </li>
