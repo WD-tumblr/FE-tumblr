@@ -6,6 +6,7 @@ import './DashBoard.scss';
 import Form from '../../components/Form';
 import Input from '../../components/Input';
 import PostCardList from '../../components/PostCardList';
+import shortid from 'shortid';
 
 class DashBoard extends Component {
   state = {
@@ -15,6 +16,10 @@ class DashBoard extends Component {
   }
 
   componentDidMount() {
+    this.setPostCards();
+  }
+
+  setPostCards() {
     const STORAGE_KEY = 'POST_KEY';
     getLocalStorage(STORAGE_KEY) && this.setState({ postCards: [...getLocalStorage(STORAGE_KEY)] });
   }
@@ -44,8 +49,9 @@ class DashBoard extends Component {
       userId, title, content, tags,
     } = this.state;
     if (title && content) {
+      const uniqueId = shortid.generate();
       const postData = {
-        userId, title, content, tags,
+        uniqueId, userId, title, content, tags,
       };
       this.savePostData(postData);
       this.hideModal();
@@ -81,7 +87,7 @@ class DashBoard extends Component {
               </ul>
             </nav>
           </div>
-          <PostCardList postCards={this.state.postCards} />
+          <PostCardList postCards={this.state.postCards} handleSetPostCards={this.setPostCards.bind(this)} />
         </section>
         <Modal show={this.state.show} onClick={this.toggleShowState}>
           <section className="postform__container">
