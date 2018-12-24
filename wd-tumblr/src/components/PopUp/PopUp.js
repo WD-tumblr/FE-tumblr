@@ -2,7 +2,7 @@ import React from 'react';
 import './PopUp.scss';
 
 
-const PopUp = ({ popupState = true, children, onClick }) => {
+const PopUp = ({ popupState = false, children, onClick }) => {
   if (!popupState) return null;
   const handleClick = (e) => {
     if (e.target.id === 'popup') {

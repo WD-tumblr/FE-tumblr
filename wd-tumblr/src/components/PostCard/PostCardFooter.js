@@ -4,7 +4,8 @@ import ReplyBox from '../ReplyBox';
 import Popover from '../Popover';
 
 const PostCardFooter = ({
-  postCardId, handleOptionBtnClick, isOpen, deletePost,
+  postCardId, handleOptionBtnClick, isOpen, deletePost, popupState,
+  handleReplyButtonClicked,
 }) => (
   <div className="postCard__footer">
     <div className="notes__container" />
@@ -15,10 +16,10 @@ const PostCardFooter = ({
         </a>
       </li>
       <li className="postCard__button">
-        <a className="postCard__button-link">
+        <a className="postCard__button-link" onClick={handleReplyButtonClicked}>
           <i className="postCard__icon-reply" />
         </a>
-        <PopUp>
+        <PopUp popupState={popupState}>
           <ReplyBox postCardId={postCardId} />
         </PopUp>
       </li>

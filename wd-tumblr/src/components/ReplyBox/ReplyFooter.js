@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import Form from '../Form';
 import Input from '../Input';
 
@@ -12,26 +13,42 @@ const randomMessage = () => {
 
 class ReplyFooter extends Component {
   state = {
-    replyValue: '',
+    replyText: '',
   }
 
   handleChange = ({ target: { value } }) => {
-    this.setState({ replyValue: value });
+    this.setState({ replyText: value });
+  }
+
+  handleSubmitReply = (e) => {
+    const { addReply } = this.props;
+    const { replyText } = this.state;
+    if (replyText) {
+      addReply(replyText);
+      this.clearInput(e);
+    }
+  }
+
+  clearInput = ({ target }) => {
+    target.replyInput.value = '';
+    this.setState({ replyText: '' });
   }
 
   render() {
-    const { userId, userProfileImg, replys } = this.props;
+    const { replyText } = this.state;
     return (
       <div className="replbox__footer">
-        <Form className="replybox__form">
+        <Form className="replybox__form" onSubmit={this.handleSubmitReply}>
           <Input
+            name="replyInput"
             placeholder={randomMessage()}
             onChange={this.handleChange}
+
           />
           <button
             className="replbox__footer-submitBtn"
             type="submit"
-            disabled={!this.state.replyValue}
+            disabled={!replyText}
           >
         댓글
           </button>

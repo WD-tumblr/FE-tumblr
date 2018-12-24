@@ -9,16 +9,22 @@ import PostCardFooter from './PostCardFooter';
 class PostCard extends Component {
   state={
     isOpen: false,
+    popupState: false,
+  }
+
+  handleReplyButtonClicked = (e) => {
+    e.preventDefault();
+    this.setState(prevState => ({ popupState: !prevState.popupState }));
   }
 
   handleOptionsButtonClicked = (e) => {
     e.preventDefault();
+
     this.setState(prevState => ({ isOpen: !prevState.isOpen }));
   };
 
   handleDeletePost=() => {
     const STORAGE_KEY = 'POST_KEY';
-    console.log(this.props);
     const filterdCardList = this.deleteCardById(STORAGE_KEY, this.props.uniqueId);
     saveLocalStorage(STORAGE_KEY, filterdCardList);
     this.setState({ postCards: filterdCardList });
@@ -33,11 +39,11 @@ class PostCard extends Component {
       postCardId,
       uniqueId,
     } = this.props;
-    const { isOpen } = this.state;
+    const { isOpen, popupState } = this.state;
     return (
       <div className="postCard__container">
         <Avatar avatarImg={avatarImg} />
-        <div className="postCard" ata-id={uniqueId}>
+        <div className="postCard" data-id={uniqueId}>
           <PostCardHeader userId={userId} />
           <PostCardContent
             title={title}
@@ -47,9 +53,11 @@ class PostCard extends Component {
             tags={tags}
           />
           <PostCardFooter
-            postCardId={postCardId}
+            postCardId={uniqueId}
             handleOptionBtnClick={this.handleOptionsButtonClicked}
             isOpen={isOpen}
+            handleReplyButtonClicked={this.handleReplyButtonClicked}
+            popupState={popupState}
             deletePost={this.handleDeletePost}
           />
         </div>
