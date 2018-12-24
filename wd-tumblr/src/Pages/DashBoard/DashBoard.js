@@ -6,6 +6,9 @@ import './DashBoard.scss';
 import Form from '../../components/Form';
 import Input from '../../components/Input';
 import PostCardList from '../../components/PostCardList';
+import PopUp from '../../components/PopUp';
+import ReplyBox from '../../components/ReplyBox';
+
 
 class DashBoard extends Component {
   state = {
@@ -66,6 +69,7 @@ class DashBoard extends Component {
         <section>
           <div className="postbar">
             <Avatar />
+
             <nav>
               <ul className="postbuttons">
                 <li

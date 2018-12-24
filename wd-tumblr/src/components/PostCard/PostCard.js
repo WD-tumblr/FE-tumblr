@@ -40,10 +40,10 @@ const PostCardList = (
           <li className="postCard__button">
             <a className="postCard__button-link">
               <i className="postCard__icon-reply" />
-              <PopUp>
-                <ReplyBox />
-              </PopUp>
             </a>
+            <PopUp>
+              <ReplyBox />
+            </PopUp>
           </li>
           <li className="postCard__button">
             <a className="postCard__button-link" href="">
