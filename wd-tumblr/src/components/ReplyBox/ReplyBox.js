@@ -1,4 +1,5 @@
 import React from 'react';
+import ReplyHeading from './ReplyHeading';
 import Form from '../Form';
 import Input from '../Input';
 import DefaultUserProfileImg from '../../assets/images/pyramid.png';
@@ -16,11 +17,7 @@ const ReplyBox = ({
   <div
     className="replybox"
   >
-    <div className="replbox__header">
-      <p className="replyCounts">
-        {`반응 ${replyCounts} 개`}
-      </p>
-    </div>
+    <ReplyHeading replyCounts={replyCounts} />
     <section className="replbox__body">
       <div className="replbox__body-header">
         <a>
