@@ -5,9 +5,10 @@ import PostCardHeader from './PostCardHeader';
 import PostCardContent from './PostCardContet';
 import PostCardFooter from './PostCardFooter';
 
-const PostCardList = (
+const PostCard = (
   {
     userId, avatarImg, cardImg, cardImgAlt, title, content, tags,
+    postCardId,
   },
 ) => (
   <div className="postCard__container">
@@ -20,10 +21,11 @@ const PostCardList = (
         cardImgAlt={cardImgAlt}
         content={content}
         tags={tags}
+
       />
-      <PostCardFooter />
+      <PostCardFooter postCardId={postCardId} />
     </div>
   </div>
 );
 
-export default PostCardList;
+export default PostCard;

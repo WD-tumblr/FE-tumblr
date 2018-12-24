@@ -5,7 +5,12 @@ import './PostCardList.scss';
 
 const PostCardList = ({ postCards }) => (
   <ul className="postCardList__container">
-    {postCards.map((v, i) => (<PostCard key={i} {...v} />))}
+    {postCards.map((v, i) => (
+      <PostCard
+        key={i}
+        {...v}
+        postCardId={i}
+      />))}
   </ul>
 );
 

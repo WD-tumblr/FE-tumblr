@@ -2,7 +2,7 @@ import React from 'react';
 import PopUp from '../PopUp';
 import ReplyBox from '../ReplyBox';
 
-const PostCardFooter = () => (
+const PostCardFooter = ({ postCardId }) => (
   <div className="postCard__footer">
     <div className="notes__container" />
     <ul className="postCard__buttons">
@@ -16,7 +16,7 @@ const PostCardFooter = () => (
           <i className="postCard__icon-reply" />
         </a>
         <PopUp>
-          <ReplyBox />
+          <ReplyBox postCardId={postCardId} />
         </PopUp>
       </li>
       <li className="postCard__button">

@@ -7,7 +7,7 @@ import './ReplyBox.scss';
 
 
 const ReplyBox = ({
-  userId = 'chany0310', replyCounts = 0, userProfileImg = DefaultUserProfileImg, replys,
+  userId = 'chany0310', replyCounts = 0, userProfileImg = DefaultUserProfileImg, replys, postCardId,
 }) => (
   <div
     className="replybox"
@@ -18,7 +18,7 @@ const ReplyBox = ({
       userProfileImg={userProfileImg}
       replys={replys}
     />
-    <ReplyFooter />
+    <ReplyFooter postCardId={postCardId} />
   </div>
 );
 
