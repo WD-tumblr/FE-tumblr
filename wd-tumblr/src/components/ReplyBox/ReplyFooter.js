@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Form from '../Form';
 import Input from '../Input';
 
@@ -8,19 +8,38 @@ const randomMessage = () => {
   const randomIdx = Math.floor(Math.random() * (randomPlaceholder.length));
   return randomPlaceholder[randomIdx];
 };
-const ReplyFooter = ({ userId, userProfileImg, replys }) => (
-  <div className="replbox__footer">
-    <Form className="replybox__form">
-      <Input placeholder={randomMessage()} />
-      <button
-        className="replbox__footer-submitBtn"
-        type="submit"
-        disabled
-      >
+
+
+class ReplyFooter extends Component {
+  state = {
+    replyValue: '',
+  }
+
+  handleChange = ({ target: { value } }) => {
+    this.setState({ replyValue: value });
+  }
+
+  render() {
+    const { userId, userProfileImg, replys } = this.props;
+    return (
+      <div className="replbox__footer">
+        <Form className="replybox__form">
+          <Input
+            placeholder={randomMessage()}
+            onChange={this.handleChange}
+          />
+          <button
+            className="replbox__footer-submitBtn"
+            type="submit"
+            disabled={!this.state.replyValue}
+          >
         댓글
-      </button>
-    </Form>
-  </div>
-);
+          </button>
+        </Form>
+      </div>
+    );
+  }
+}
+
 
 export default ReplyFooter;
