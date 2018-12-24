@@ -5,5 +5,9 @@
   width: 100%;
   min-height: 100vh;
   background: #36465d;
+  position: relative;
 }
 
+input:focus {
+  outline: none;
+}

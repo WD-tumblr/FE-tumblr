@@ -8,6 +8,7 @@ import Input from '../../components/Input';
 import PostCardList from '../../components/PostCardList';
 import shortid from 'shortid';
 
+
 class DashBoard extends Component {
   state = {
     show: false,
@@ -125,10 +126,9 @@ class DashBoard extends Component {
                 onChange={this.handleOnChange}
               />
               <div className="form__toolbar">
-                <button
-                  onClick={this.hideModal}
-                >
-                닫기
+
+                <button onClick={this.hideModal}>
+                  닫기
                 </button>
                 <button>포스팅</button>
               </div>
