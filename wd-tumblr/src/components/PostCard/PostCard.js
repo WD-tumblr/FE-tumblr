@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import Avatar from '../Avatar';
-import Popover from '../Popover';
 import './PostCard.scss';
 import { getLocalStorage, saveLocalStorage } from '../../helper';
-import PostCardList from '../PostCardList/PostCardList';
 import PostCardHeader from './PostCardHeader';
 import PostCardContent from './PostCardContet';
 import PostCardFooter from './PostCardFooter';
@@ -20,6 +18,7 @@ class PostCard extends Component {
 
   handleDeletePost=() => {
     const STORAGE_KEY = 'POST_KEY';
+    console.log(this.props);
     const filterdCardList = this.deleteCardById(STORAGE_KEY, this.props.uniqueId);
     saveLocalStorage(STORAGE_KEY, filterdCardList);
     this.setState({ postCards: filterdCardList });

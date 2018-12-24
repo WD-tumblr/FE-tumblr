@@ -1,8 +1,11 @@
 import React from 'react';
 import PopUp from '../PopUp';
 import ReplyBox from '../ReplyBox';
+import Popover from '../Popover';
 
-const PostCardFooter = ({ postCardId, handleOptionBtnClick, isOpen }) => (
+const PostCardFooter = ({
+  postCardId, handleOptionBtnClick, isOpen, deletePost,
+}) => (
   <div className="postCard__footer">
     <div className="notes__container" />
     <ul className="postCard__buttons">

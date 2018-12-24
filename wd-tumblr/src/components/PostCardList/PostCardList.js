@@ -11,7 +11,7 @@ const PostCardList = ({ postCards, handleSetPostCards }) => (
         key={i}
         {...v}
         postCardId={i}
-        handleSetPostCard={handleSetPostCards}
+        handleSetPostCards={handleSetPostCards}
       />))}
   </ul>
 );

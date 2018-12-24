@@ -88,7 +88,10 @@ class DashBoard extends Component {
               </ul>
             </nav>
           </div>
-          <PostCardList postCards={this.state.postCards} handleSetPostCards={this.setPostCards.bind(this)} />
+          <PostCardList
+            postCards={this.state.postCards}
+            handleSetPostCards={this.setPostCards.bind(this)}
+          />
         </section>
         <Modal show={this.state.show} onClick={this.toggleShowState}>
           <section className="postform__container">
