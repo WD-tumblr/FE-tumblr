@@ -1,16 +1,11 @@
 import React from 'react';
 import ReplyHeading from './ReplyHeading';
-import Form from '../Form';
-import Input from '../Input';
+import ReplyContent from './ReplyContent';
+import ReplyFooter from './ReplyFooter';
 import DefaultUserProfileImg from '../../assets/images/pyramid.png';
 import './ReplyBox.scss';
 
 
-const randomMessage = () => {
-  const randomPlaceholder = ['여기에 쓰세요', '시원하게 칭찬 한마디', '남기고 싶은 댓글은?', '대화 목록에 추가하기', '하고 싶은 얘기하기', '속시원하게 댓글 남기기'];
-  const randomIdx = Math.floor(Math.random() * (randomPlaceholder.length));
-  return randomPlaceholder[randomIdx];
-};
 const ReplyBox = ({
   userId = 'chany0310', replyCounts = 0, userProfileImg = DefaultUserProfileImg, replys,
 }) => (
@@ -18,32 +13,12 @@ const ReplyBox = ({
     className="replybox"
   >
     <ReplyHeading replyCounts={replyCounts} />
-    <section className="replbox__body">
-      <div className="replbox__body-header">
-        <a>
-          <img src={userProfileImg} alt="" />
-        </a>
-        <a>
-          {userId}
-        </a>
-        <span>
-          님이 포스팅 했습니다
-        </span>
-      </div>
-      {replys && <ul className="replys" />}
-    </section>
-    <div className="replbox__footer">
-      <Form className="replybox__form">
-        <Input placeholder={randomMessage()} />
-        <button
-          className="replbox__footer-submitBtn"
-          type="submit"
-          disabled
-        >
-        댓글
-        </button>
-      </Form>
-    </div>
+    <ReplyContent
+      userId={userId}
+      userProfileImg={userProfileImg}
+      replys={replys}
+    />
+    <ReplyFooter />
   </div>
 );
 

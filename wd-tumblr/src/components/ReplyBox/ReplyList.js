@@ -1,4 +1,5 @@
 import React from 'react';
+import DefaultUserProfileImg from '../../assets/images/pyramid.png';
 
 const ReplyList = ({ replyList }) => (
   <ul className="replys">

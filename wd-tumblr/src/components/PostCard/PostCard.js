@@ -1,8 +1,6 @@
 import React from 'react';
 import Avatar from '../Avatar';
 import './PostCard.scss';
-import PopUp from '../PopUp';
-import ReplyBox from '../ReplyBox';
 import PostCardHeader from './PostCardHeader';
 import PostCardContent from './PostCardContet';
 import PostCardFooter from './PostCardFooter';
