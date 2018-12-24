@@ -48,8 +48,8 @@ class DashBoard extends Component {
     const {
       userId, title, content, tags,
     } = this.state;
-    const uniqueId = shortid.generate();
     if (title && content) {
+      const uniqueId = shortid.generate();
       const postData = {
         uniqueId, userId, title, content, tags,
       };

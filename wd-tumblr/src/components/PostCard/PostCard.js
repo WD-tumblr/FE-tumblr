@@ -27,7 +27,6 @@ class PostCard extends Component {
   deleteCardById=(key, id) => getLocalStorage(key).filter(v => v.uniqueId !== id)
 
   render() {
-    console.log('rerender');
     return (
       <div className="postCard__container">
         <Avatar />
