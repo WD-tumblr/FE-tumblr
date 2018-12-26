@@ -1,11 +1,18 @@
 import React from 'react';
+import Avatar from '../Avatar';
 import DefaultUserProfileImg from '../../assets/images/pyramid.png';
 
-const ReplyListItem = ({ profileImg = DefaultUserProfileImg }) => (
+const ReplyListItem = ({ profileImg, userId, replyText }) => (
   <li className="replyItem">
-    <p className="replyCounts">
-      {`반응 ${replyCounts} 개`}
-    </p>
+    <Avatar
+      avatarImg={DefaultUserProfileImg}
+      containerClass="replyThumbnail__container"
+      className="replyThumbnail"
+    />
+    <div>
+      <p className="userId">{userId}</p>
+      <p className="replyText">{replyText}</p>
+    </div>
   </li>
 );
 

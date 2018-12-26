@@ -1,4 +1,5 @@
 import React from 'react';
+import ReplyList from './ReplyList';
 
 
 const ReplyContent = ({ userId, userProfileImg, replys }) => (
@@ -14,7 +15,7 @@ const ReplyContent = ({ userId, userProfileImg, replys }) => (
           님이 포스팅 했습니다
       </span>
     </div>
-    {replys && <ul className="replys" />}
+    <ReplyList replys={replys} />
   </section>
 );
 

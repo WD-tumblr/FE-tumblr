@@ -20,10 +20,12 @@ class ReplyBox extends Component {
   }
 
   addReply = (replyText) => {
+    const { userId } = this.props;
     const id = shortid.generate();
     const replyData = {
       id,
       replyText,
+      userId,
     };
     const { postCardId } = this.props;
     const STORAGE_KEY = `REPLYKEY_${postCardId}`;
@@ -35,7 +37,7 @@ class ReplyBox extends Component {
 
   render() {
     const {
-      userId = 'chany0310', replyCounts = 0, userProfileImg = DefaultUserProfileImg, postCardId,
+      userId, replyCounts = 0, userProfileImg = DefaultUserProfileImg, postCardId,
     } = this.props;
     const { replys } = this.state;
     return (

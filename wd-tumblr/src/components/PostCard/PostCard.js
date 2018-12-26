@@ -42,7 +42,9 @@ class PostCard extends Component {
     const { isOpen, popupState } = this.state;
     return (
       <div className="postCard__container">
-        <Avatar avatarImg={avatarImg} />
+        <Avatar
+          avatarImg={avatarImg}
+        />
         <div className="postCard" data-id={uniqueId}>
           <PostCardHeader userId={userId} />
           <PostCardContent
@@ -53,6 +55,7 @@ class PostCard extends Component {
             tags={tags}
           />
           <PostCardFooter
+            userId={userId}
             postCardId={uniqueId}
             handleOptionBtnClick={this.handleOptionsButtonClicked}
             isOpen={isOpen}

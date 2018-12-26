@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import shortid from 'shortid';
 import Modal from '../../components/Modal';
 import Avatar from '../../components/Avatar';
 import { saveLocalStorage, getLocalStorage, toggleState } from '../../helper';
@@ -6,7 +7,6 @@ import './DashBoard.scss';
 import Form from '../../components/Form';
 import Input from '../../components/Input';
 import PostCardList from '../../components/PostCardList';
-import shortid from 'shortid';
 
 
 class DashBoard extends Component {
@@ -89,6 +89,7 @@ class DashBoard extends Component {
             </nav>
           </div>
           <PostCardList
+            userId={this.state.userId}
             postCards={this.state.postCards}
             handleSetPostCards={this.setPostCards.bind(this)}
           />

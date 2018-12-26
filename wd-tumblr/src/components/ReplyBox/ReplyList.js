@@ -1,11 +1,14 @@
 import React from 'react';
-import DefaultUserProfileImg from '../../assets/images/pyramid.png';
+import ReplyListItem from './ReplyListItem';
 
-const ReplyList = ({ replyList }) => (
+const ReplyList = ({ replys }) => (
   <ul className="replys">
-    <p className="replyCounts">
-      {`반응 ${replyCounts} 개`}
-    </p>
+    {replys.map((v, i) => (
+      <ReplyListItem
+        key={i}
+        {...v}
+      />
+    ))}
   </ul>
 );
 
