@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import shortid from 'shortid';
 import Modal from '../../components/Modal';
 import Avatar from '../../components/Avatar';
 import { saveLocalStorage, getLocalStorage, toggleState } from '../../helper';
@@ -6,7 +7,7 @@ import './DashBoard.scss';
 import Form from '../../components/Form';
 import Input from '../../components/Input';
 import PostCardList from '../../components/PostCardList';
-import shortid from 'shortid';
+
 
 class DashBoard extends Component {
   state = {
@@ -87,7 +88,11 @@ class DashBoard extends Component {
               </ul>
             </nav>
           </div>
-          <PostCardList postCards={this.state.postCards} handleSetPostCards={this.setPostCards.bind(this)} />
+          <PostCardList
+            userId={this.state.userId}
+            postCards={this.state.postCards}
+            handleSetPostCards={this.setPostCards.bind(this)}
+          />
         </section>
         <Modal show={this.state.show} onClick={this.toggleShowState}>
           <section className="postform__container">
@@ -125,10 +130,9 @@ class DashBoard extends Component {
                 onChange={this.handleOnChange}
               />
               <div className="form__toolbar">
-                <button
-                  onClick={this.hideModal}
-                >
-                닫기
+
+                <button onClick={this.hideModal}>
+                  닫기
                 </button>
                 <button>포스팅</button>
               </div>
