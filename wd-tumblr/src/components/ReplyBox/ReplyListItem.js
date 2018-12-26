@@ -9,7 +9,7 @@ const ReplyListItem = ({ profileImg, userId, replyText }) => (
       containerClass="replyThumbnail__container"
       className="replyThumbnail"
     />
-    <div>
+    <div className="replyText__container">
       <p className="userId">{userId}</p>
       <p className="replyText">{replyText}</p>
     </div>
