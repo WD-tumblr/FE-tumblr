@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReplyHeading from './ReplyHeading';
 import ReplyContent from './ReplyContent';
 import ReplyFooter from './ReplyFooter';
@@ -8,6 +9,12 @@ import { getLocalStorage, saveLocalStorage } from '../../helper';
 import shortid from 'shortid';
 
 class ReplyBox extends Component {
+  static propTypes = {
+    userId: PropTypes.string,
+    userProfileImg: PropTypes.string,
+    postCardId: PropTypes.string,
+  }
+
   state = {
     replys: [],
   }
@@ -37,7 +44,7 @@ class ReplyBox extends Component {
 
   render() {
     const {
-      userId, replyCounts = 0, userProfileImg = DefaultUserProfileImg, postCardId,
+      userId, userProfileImg = DefaultUserProfileImg, postCardId,
     } = this.props;
     const { replys } = this.state;
     return (
