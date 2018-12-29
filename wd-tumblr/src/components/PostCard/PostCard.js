@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Avatar from '../Avatar';
 import './PostCard.scss';
-import { getLocalStorage, saveLocalStorage } from '../../helper';
 import PostCardHeader from './PostCardHeader';
 import PostCardContent from './PostCardContet';
 import PostCardFooter from './PostCardFooter';
@@ -12,32 +11,21 @@ class PostCard extends Component {
     popupState: false,
   }
 
-  handleReplyButtonClicked = (e) => {
+  handleReplyButtonClick = (e) => {
     e.preventDefault();
     this.setState(prevState => ({ popupState: !prevState.popupState }));
   }
 
-  handleOptionsButtonClicked = (e) => {
+  handleOptionButtonClick = (e) => {
     e.preventDefault();
-
     this.setState(prevState => ({ isOpen: !prevState.isOpen }));
   };
-
-  handleDeletePost=() => {
-    const STORAGE_KEY = 'POST_KEY';
-    const filterdCardList = this.deleteCardById(STORAGE_KEY, this.props.uniqueId);
-    saveLocalStorage(STORAGE_KEY, filterdCardList);
-    this.setState({ postCards: filterdCardList });
-    this.props.handleSetPostCards();
-  }
-
-  deleteCardById=(key, id) => getLocalStorage(key).filter(v => v.uniqueId !== id)
 
   render() {
     const {
       userId, avatarImg, cardImg, cardImgAlt, title, content, tags,
       postCardId,
-      uniqueId,
+      uniqueId, handleDeletePost,
     } = this.props;
     const { isOpen, popupState } = this.state;
     return (
@@ -45,7 +33,7 @@ class PostCard extends Component {
         <Avatar
           avatarImg={avatarImg}
         />
-        <div className="postCard" data-id={uniqueId}>
+        <div className="postCard">
           <PostCardHeader userId={userId} />
           <PostCardContent
             title={title}
@@ -56,12 +44,12 @@ class PostCard extends Component {
           />
           <PostCardFooter
             userId={userId}
-            postCardId={uniqueId}
-            handleOptionBtnClick={this.handleOptionsButtonClicked}
+            postCardId={postCardId}
+            handleOptionButtonClick={this.handleOptionButtonClick}
             isOpen={isOpen}
-            handleReplyButtonClicked={this.handleReplyButtonClicked}
+            handleReplyButtonClick={this.handleReplyButtonClick}
             popupState={popupState}
-            deletePost={this.handleDeletePost}
+            deletePost={handleDeletePost}
           />
         </div>
       </div>
