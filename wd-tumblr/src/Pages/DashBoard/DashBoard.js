@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import shortid from 'shortid';
-import Modal from '../../components/Modal';
-import Avatar from '../../components/Avatar';
+import Modal from '../../components/common/Modal';
+import Avatar from '../../components/common/Avatar';
 import { saveLocalStorage, getLocalStorage, toggleState } from '../../helper';
 import './DashBoard.scss';
-import Form from '../../components/Form';
-import Input from '../../components/Input';
+import Form from '../../components/common/Form';
+import Input from '../../components/common/Input';
 import PostCardList from '../../components/PostCardList';
 
 

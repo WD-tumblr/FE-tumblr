@@ -1,7 +1,7 @@
 import React from 'react';
-import PopUp from '../PopUp';
-import Popover from '../Popover';
-import ReplyBox from '../ReplyBox';
+import PopUp from '../../common/PopUp';
+import Popover from '../../common/Popover';
+import ReplyBox from '../../ReplyBox';
 
 const PostCardFooter = ({
   popupState, handleReplyButtonClick,
