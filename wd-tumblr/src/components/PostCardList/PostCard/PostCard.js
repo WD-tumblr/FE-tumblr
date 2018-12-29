@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Avatar from '../Avatar';
+import Avatar from '../../common/Avatar';
 import './PostCard.scss';
 import PostCardHeader from './PostCardHeader';
 import PostCardContent from './PostCardContet';

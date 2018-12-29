@@ -1,6 +1,6 @@
 import React from 'react';
 import './Logo.scss';
-import logo from '../../assets/images/tumblrLogo.png';
+import logo from '../../../assets/images/tumblrLogo.png';
 
 const Logo = ({ img, alt }) => (
   <div>

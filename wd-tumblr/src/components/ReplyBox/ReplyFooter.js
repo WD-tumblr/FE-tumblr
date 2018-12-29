@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Form from '../Form';
-import Input from '../Input';
+import Form from '../common/Form';
+import Input from '../common/Input';
 
 
 const randomMessage = () => {

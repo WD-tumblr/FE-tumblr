@@ -1,5 +1,5 @@
 import React from 'react';
-import Avatar from '../Avatar';
+import Avatar from '../common/Avatar';
 import DefaultUserProfileImg from '../../assets/images/pyramid.png';
 
 const ReplyListItem = ({ profileImg, userId, replyText }) => (

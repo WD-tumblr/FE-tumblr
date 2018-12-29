@@ -1,6 +1,6 @@
 import React from 'react';
 import './Avatar.scss';
-import DefaultAvatar from '../../assets/images/octahedron.png';
+import DefaultAvatar from '../../../assets/images/octahedron.png';
 
 const Avatar = ({ avatarImg = DefaultAvatar, className, containerClass = 'avatar' }) => (
   <div className={containerClass}>
