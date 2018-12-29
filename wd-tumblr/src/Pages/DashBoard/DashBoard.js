@@ -30,6 +30,15 @@ class DashBoard extends Component {
     this.setState(() => ({ [name]: value }));
   }
 
+ handleDeletePost=(id) => {
+   const STORAGE_KEY = 'POST_KEY';
+   const filterdCardList = this.filterById(STORAGE_KEY, id);
+   saveLocalStorage(STORAGE_KEY, filterdCardList);
+   this.setState({ postCards: filterdCardList });
+ }
+
+  filterById = (key, id) => getLocalStorage(key).filter(({ postCardId }) => postCardId !== id)
+
   handlePostButtonClicked = () => {
     this.toggleShowState();
   }
@@ -50,9 +59,9 @@ class DashBoard extends Component {
       userId, title, content, tags,
     } = this.state;
     if (title && content) {
-      const uniqueId = shortid.generate();
+      const postCardId = shortid.generate();
       const postData = {
-        uniqueId, userId, title, content, tags,
+        postCardId, userId, title, content, tags,
       };
       this.savePostData(postData);
       this.hideModal();
@@ -68,6 +77,7 @@ class DashBoard extends Component {
   }
 
   render() {
+    const { userId, postCards, show } = this.state;
     return (
       <div className="dashboard__container">
         <section>
@@ -89,12 +99,13 @@ class DashBoard extends Component {
             </nav>
           </div>
           <PostCardList
-            userId={this.state.userId}
-            postCards={this.state.postCards}
-            handleSetPostCards={this.setPostCards.bind(this)}
+            userId={userId}
+            postCards={postCards}
+            handleSetPostCards={() => this.setPostCards()}
+            handleDeletePost={id => this.handleDeletePost(id)}
           />
         </section>
-        <Modal show={this.state.show} onClick={this.toggleShowState}>
+        <Modal show={show} onClick={this.toggleShowState}>
           <section className="postform__container">
             <Avatar />
             <Form
