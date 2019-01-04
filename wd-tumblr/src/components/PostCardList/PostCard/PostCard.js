@@ -4,8 +4,21 @@ import './PostCard.scss';
 import PostCardHeader from './PostCardHeader';
 import PostCardContent from './PostCardContet';
 import PostCardFooter from './PostCardFooter';
+import PropTypes from 'prop-types';
 
 class PostCard extends Component {
+  static propTypes = {
+    userId: PropTypes.string.isRequired,
+    avatarImg: PropTypes.string,
+    cardImg: PropTypes.string,
+    cardImgAlt: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    tags: PropTypes.array,
+    postCardId: PropTypes.string,
+    options: PropTypes.array,
+  }
+
   state={
     isOpen: false,
     popupState: false,
@@ -25,7 +38,6 @@ class PostCard extends Component {
     const {
       userId, avatarImg, cardImg, cardImgAlt, title, content, tags,
       postCardId,
-      handleDeletePost,
       options,
     } = this.props;
 
