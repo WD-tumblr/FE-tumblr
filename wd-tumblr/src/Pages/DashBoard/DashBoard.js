@@ -17,12 +17,21 @@ class DashBoard extends Component {
   }
 
   componentDidMount() {
-    this.setPostCards();
+    const posts = this.getPosts();
+    this.setPostCards(posts);
   }
 
-  setPostCards() {
-    const STORAGE_KEY = 'POST_KEY';
-    getLocalStorage(STORAGE_KEY) && this.setState({ postCards: [...getLocalStorage(STORAGE_KEY)] });
+  getStorageKey = () => 'POST_KEY'
+
+  getPosts = () => getLocalStorage(this.getStorageKey()) || []
+
+  setPostCards = (postCards) => {
+    this.setState({ postCards });
+  }
+
+  setStorage(updateData) {
+    saveLocalStorage(this.getStorageKey(), updateData);
+    this.setPostCards(updateData);
   }
 
   handleEdit() {
@@ -47,13 +56,10 @@ class DashBoard extends Component {
   }
 
  handleDeletePost=(id) => {
-   const STORAGE_KEY = 'POST_KEY';
-   const filterdCardList = this.filterById(STORAGE_KEY, id);
-   saveLocalStorage(STORAGE_KEY, filterdCardList);
-   this.setState({ postCards: filterdCardList });
+   const posts = this.getPosts();
+   const filtered = posts.filter(({ postCardId }) => postCardId !== id);
+   this.setStorage(filtered);
  }
-
-  filterById = (key, id) => getLocalStorage(key).filter(({ postCardId }) => postCardId !== id)
 
   handlePostButtonClicked = () => {
     this.toggleShowState();
