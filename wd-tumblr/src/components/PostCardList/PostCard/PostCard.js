@@ -25,8 +25,10 @@ class PostCard extends Component {
     const {
       userId, avatarImg, cardImg, cardImgAlt, title, content, tags,
       postCardId,
-      uniqueId, handleDeletePost,
+      handleDeletePost,
+      options,
     } = this.props;
+
     const { isOpen, popupState } = this.state;
     return (
       <div className="postCard__container">
@@ -49,7 +51,7 @@ class PostCard extends Component {
             isOpen={isOpen}
             handleReplyButtonClick={this.handleReplyButtonClick}
             popupState={popupState}
-            deletePost={handleDeletePost}
+            options={options}
           />
         </div>
       </div>

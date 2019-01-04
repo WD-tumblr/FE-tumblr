@@ -2,11 +2,14 @@ import React from 'react';
 import PopUp from '../../common/PopUp';
 import Popover from '../../common/Popover';
 import ReplyBox from '../../ReplyBox';
+import Options from '../../common/Options';
+
 
 const PostCardFooter = ({
   popupState, handleReplyButtonClick,
   userid,
-  postCardId, handleOptionButtonClick, isOpen, deletePost,
+  postCardId, handleOptionButtonClick, isOpen,
+  options,
 }) => (
   <div className="postCard__footer">
     <div className="notes__container" />
@@ -45,10 +48,13 @@ const PostCardFooter = ({
             className="postCard__icon-options"
           >
             <Popover
-              postCardId={postCardId}
               isOpen={isOpen}
-              deletePost={deletePost}
-            />
+            >
+              <Options
+                postCardId={postCardId}
+                options={options}
+              />
+            </Popover>
           </i>
         </a>
       </li>

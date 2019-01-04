@@ -7,7 +7,7 @@ import './DashBoard.scss';
 import Form from '../../components/common/Form';
 import Input from '../../components/common/Input';
 import PostCardList from '../../components/PostCardList';
-
+import { cardFooterOptions } from './cardFooterOptions';
 
 class DashBoard extends Component {
   state = {
@@ -23,6 +23,22 @@ class DashBoard extends Component {
   setPostCards() {
     const STORAGE_KEY = 'POST_KEY';
     getLocalStorage(STORAGE_KEY) && this.setState({ postCards: [...getLocalStorage(STORAGE_KEY)] });
+  }
+
+  handleEdit() {
+    console.log('Edit');
+  }
+
+  makeOptions() {
+    const handlerMap = {
+      EDIT: () => this.handleEdit(),
+      DELETE: id => this.handleDeletePost(id),
+    };
+    const options = cardFooterOptions.map(option => ({
+      ...option,
+      handler: handlerMap[option.handlerKey],
+    }));
+    return options;
   }
 
   handleOnChange = (e) => {
@@ -102,7 +118,7 @@ class DashBoard extends Component {
             userId={userId}
             postCards={postCards}
             handleSetPostCards={() => this.setPostCards()}
-            handleDeletePost={id => this.handleDeletePost(id)}
+            options={this.makeOptions()}
           />
         </section>
         <Modal show={show} onClick={this.toggleShowState}>
