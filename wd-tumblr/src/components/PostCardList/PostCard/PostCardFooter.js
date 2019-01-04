@@ -7,7 +7,7 @@ import Options from '../../common/Options';
 
 const PostCardFooter = ({
   popupState, handleReplyButtonClick,
-  userid,
+  userId,
   postCardId, handleOptionButtonClick, isOpen,
   options,
 }) => (
@@ -29,7 +29,7 @@ const PostCardFooter = ({
         <PopUp popupState={popupState}>
           <ReplyBox
             postCardId={postCardId}
-            userid={userid}
+            userId={userId}
           />
         </PopUp>
       </li>
@@ -51,7 +51,7 @@ const PostCardFooter = ({
               isOpen={isOpen}
             >
               <Options
-                postCardId={postCardId}
+                optionId={postCardId}
                 options={options}
               />
             </Popover>

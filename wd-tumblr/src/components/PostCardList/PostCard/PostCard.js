@@ -50,6 +50,7 @@ class PostCard extends Component {
         <div className="postCard">
           <PostCardHeader userId={userId} />
           <PostCardContent
+            userId={userId}
             title={title}
             cardImg={cardImg}
             cardImgAlt={cardImgAlt}

@@ -130,7 +130,7 @@ class DashBoard extends Component {
             >
               <div className="postform__header">
                 <div className="dropdown">
-                  <span>userId</span>
+                  <span>{userId}</span>
                 </div>
                 <div className="settingbutton">
                   <span>SettingButton</span>

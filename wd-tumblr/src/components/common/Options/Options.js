@@ -2,13 +2,13 @@ import React from 'react';
 import OptionItem from './OptionsItem';
 import './Options.scss';
 
-const Options = ({ options, postCardId }) => (
+const Options = ({ options, optionId }) => (
   <ul>
     {options.map(({ buttonText, handler }, i) => (
       <OptionItem
         key={i}
         buttonText={buttonText}
-        onClick={() => handler(postCardId)}
+        onClick={() => handler(optionId)}
       />
     ))}
   </ul>
