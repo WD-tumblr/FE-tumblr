@@ -30,15 +30,15 @@ class DashBoard extends Component {
   }
 
   makeOptions() {
+    const options = { ...cardFooterOptions };
     const handlerMap = {
       EDIT: () => this.handleEdit(),
       DELETE: id => this.handleDeletePost(id),
     };
-    const options = cardFooterOptions.map(option => ({
-      ...option,
-      handler: handlerMap[option.handlerKey],
-    }));
-    return options;
+    Object.keys(options).forEach((option) => {
+      options[option].handler = handlerMap[option];
+    });
+    return Object.values(options);
   }
 
   handleOnChange = (e) => {
