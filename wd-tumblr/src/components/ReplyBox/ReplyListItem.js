@@ -36,7 +36,10 @@ class ReplyListItem extends Component {
           >
             <i className="postCard__icon-reply" />
           </a>
-          <Popover isOpen={isOpen}>
+          <Popover
+            isOpen={isOpen}
+            popOverClass="reply__popover"
+          >
             <Options options={options} optionId={replyId} />
           </Popover>
         </div>
