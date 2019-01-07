@@ -7,6 +7,7 @@ import './DashBoard.scss';
 import Form from '../../components/common/Form';
 import Input from '../../components/common/Input';
 import PostCardList from '../../components/PostCardList';
+import { cardFooterOptions } from './cardFooterOptions';
 
 
 class DashBoard extends Component {
@@ -14,15 +15,39 @@ class DashBoard extends Component {
     show: false,
     userId: 'Dali',
     postCards: [],
+    STORAGE_KEY: 'POST_KEY',
   }
 
   componentDidMount() {
-    this.setPostCards();
+    const posts = this.getPosts();
+    this.setState({ postCards: posts });
   }
 
-  setPostCards() {
-    const STORAGE_KEY = 'POST_KEY';
-    getLocalStorage(STORAGE_KEY) && this.setState({ postCards: [...getLocalStorage(STORAGE_KEY)] });
+  getPosts = () => {
+    const { STORAGE_KEY } = this.state;
+    return getLocalStorage(STORAGE_KEY) || [];
+  }
+
+  setStorage(updateData) {
+    const { STORAGE_KEY } = this.state;
+    saveLocalStorage(STORAGE_KEY, updateData);
+    this.setState({ postCards: updateData });
+  }
+
+  handleEdit() {
+    console.log('Edit');
+  }
+
+  makeOptions() {
+    const options = { ...cardFooterOptions };
+    const handlerMap = {
+      EDIT: () => this.handleEdit(),
+      DELETE: id => this.handleDeletePost(id),
+    };
+    Object.keys(options).forEach((option) => {
+      options[option].handler = handlerMap[option];
+    });
+    return Object.values(options);
   }
 
   handleOnChange = (e) => {
@@ -31,13 +56,10 @@ class DashBoard extends Component {
   }
 
  handleDeletePost=(id) => {
-   const STORAGE_KEY = 'POST_KEY';
-   const filterdCardList = this.filterById(STORAGE_KEY, id);
-   saveLocalStorage(STORAGE_KEY, filterdCardList);
-   this.setState({ postCards: filterdCardList });
+   const posts = this.getPosts();
+   const filtered = posts.filter(({ postCardId }) => postCardId !== id);
+   this.setStorage(filtered);
  }
-
-  filterById = (key, id) => getLocalStorage(key).filter(({ postCardId }) => postCardId !== id)
 
   handlePostButtonClicked = () => {
     this.toggleShowState();
@@ -69,11 +91,10 @@ class DashBoard extends Component {
   }
 
   savePostData = (postData) => {
-    const STORAGE_KEY = 'POST_KEY';
+    const { STORAGE_KEY } = this.state;
     let lastData = getLocalStorage(STORAGE_KEY) || [];
     lastData = [postData, ...lastData];
-    saveLocalStorage(STORAGE_KEY, lastData);
-    this.setState({ postCards: [...lastData] });
+    this.setStorage(lastData);
   }
 
   render() {
@@ -102,7 +123,7 @@ class DashBoard extends Component {
             userId={userId}
             postCards={postCards}
             handleSetPostCards={() => this.setPostCards()}
-            handleDeletePost={id => this.handleDeletePost(id)}
+            options={this.makeOptions()}
           />
         </section>
         <Modal show={show} onClick={this.toggleShowState}>
@@ -114,7 +135,7 @@ class DashBoard extends Component {
             >
               <div className="postform__header">
                 <div className="dropdown">
-                  <span>userId</span>
+                  <span>{userId}</span>
                 </div>
                 <div className="settingbutton">
                   <span>SettingButton</span>

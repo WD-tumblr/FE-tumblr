@@ -4,29 +4,39 @@ import './PostCard.scss';
 import PostCardHeader from './PostCardHeader';
 import PostCardContent from './PostCardContet';
 import PostCardFooter from './PostCardFooter';
+import PropTypes from 'prop-types';
+import { toggleState } from '../../../helper';
 
 class PostCard extends Component {
+  static propTypes = {
+    userId: PropTypes.string.isRequired,
+    avatarImg: PropTypes.string,
+    cardImg: PropTypes.string,
+    cardImgAlt: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    tags: PropTypes.array,
+    postCardId: PropTypes.string,
+    options: PropTypes.array,
+  }
+
   state={
     isOpen: false,
     popupState: false,
   }
 
-  handleReplyButtonClick = (e) => {
-    e.preventDefault();
-    this.setState(prevState => ({ popupState: !prevState.popupState }));
-  }
+  handleReplyButtonClick = () => this.setState(toggleState('popupState'));
 
-  handleOptionButtonClick = (e) => {
-    e.preventDefault();
-    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
-  };
+
+  handleOptionButtonClick = () => this.setState(toggleState('isOpen'))
 
   render() {
     const {
       userId, avatarImg, cardImg, cardImgAlt, title, content, tags,
       postCardId,
-      uniqueId, handleDeletePost,
+      options,
     } = this.props;
+
     const { isOpen, popupState } = this.state;
     return (
       <div className="postCard__container">
@@ -36,6 +46,7 @@ class PostCard extends Component {
         <div className="postCard">
           <PostCardHeader userId={userId} />
           <PostCardContent
+            userId={userId}
             title={title}
             cardImg={cardImg}
             cardImgAlt={cardImgAlt}
@@ -49,7 +60,7 @@ class PostCard extends Component {
             isOpen={isOpen}
             handleReplyButtonClick={this.handleReplyButtonClick}
             popupState={popupState}
-            deletePost={handleDeletePost}
+            options={options}
           />
         </div>
       </div>

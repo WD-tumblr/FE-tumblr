@@ -2,61 +2,50 @@ import React from 'react';
 import PopUp from '../../common/PopUp';
 import Popover from '../../common/Popover';
 import ReplyBox from '../../ReplyBox';
+import Options from '../../common/Options';
+import IconButton from '../../common/IconButton';
+
 
 const PostCardFooter = ({
   popupState, handleReplyButtonClick,
-  userid,
-  postCardId, handleOptionButtonClick, isOpen, deletePost,
-}) => {
-  console.log(handleOptionButtonClick);
-  return (
-    <div className="postCard__footer">
-      <div className="notes__container" />
-      <ul className="postCard__buttons">
-        <li className="postCard__button">
-          <a className="postCard__button-link">
-            <i className="postCard__icon-share" />
-          </a>
-        </li>
-        <li className="postCard__button">
-          <a
-            className="postCard__button-link"
-            onClick={handleReplyButtonClick}
-          >
-            <i className="postCard__icon-reply" />
-          </a>
+  userId,
+  postCardId, handleOptionButtonClick, isOpen,
+  options,
+}) => (
+  <div className="postCard__footer">
+    <div className="notes__container" />
+    <ul className="postCard__buttons">
+      <IconButton iconClassName="postCard__icon-share" />
+      <IconButton
+        iconClassName="postCard__icon-reply"
+        onClick={handleReplyButtonClick}
+        children={(
           <PopUp popupState={popupState}>
             <ReplyBox
               postCardId={postCardId}
-              userid={userid}
+              userId={userId}
             />
           </PopUp>
-        </li>
-        <li className="postCard__button">
-          <a className="postCard__button-link" href="">
-            <i className="postCard__icon-reblog" />
-          </a>
-        </li>
-        <li className="postCard__button">
-          <a
-            className="postCard__button-link"
-            href=""
-            onClick={handleOptionButtonClick}
+        )}
+      />
+      <IconButton iconClassName="postCard__icon-reblog" />
+      <IconButton
+        iconClassName="postCard__icon-options"
+        onClick={handleOptionButtonClick}
+        children={(
+          <Popover
+            isOpen={isOpen}
+            popOverClass="popover__container"
           >
-            <i
-              className="postCard__icon-options"
-            >
-              <Popover
-                postCardId={postCardId}
-                isOpen={isOpen}
-                deletePost={deletePost}
-              />
-            </i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  );
-};
+            <Options
+              optionId={postCardId}
+              options={options}
+            />
+          </Popover>
+        )}
+      />
+    </ul>
+  </div>
+);
 
 export default PostCardFooter;

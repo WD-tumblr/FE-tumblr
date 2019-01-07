@@ -2,7 +2,9 @@ import React from 'react';
 import ReplyList from './ReplyList';
 
 
-const ReplyContent = ({ userId, userProfileImg, replys }) => (
+const ReplyContent = ({
+  userId, userProfileImg, replys, options,
+}) => (
   <section className="replbox__body">
     <div className="replbox__body-header">
       <a>
@@ -15,7 +17,10 @@ const ReplyContent = ({ userId, userProfileImg, replys }) => (
           님이 포스팅 했습니다
       </span>
     </div>
-    <ReplyList replys={replys} />
+    <ReplyList
+      replys={replys}
+      options={options}
+    />
   </section>
 );
 

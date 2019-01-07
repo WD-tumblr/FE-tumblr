@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReplyHeading from './ReplyHeading';
 import ReplyContent from './ReplyContent';
 import ReplyFooter from './ReplyFooter';
@@ -6,17 +7,57 @@ import DefaultUserProfileImg from '../../assets/images/pyramid.png';
 import './ReplyBox.scss';
 import { getLocalStorage, saveLocalStorage } from '../../helper';
 import shortid from 'shortid';
+import replyItemOptions from './replyItemOptions';
+
 
 class ReplyBox extends Component {
+  static propTypes = {
+    userId: PropTypes.string,
+    userProfileImg: PropTypes.string,
+    postCardId: PropTypes.string,
+  }
+
   state = {
     replys: [],
+    REPLY_KEY: `REPLYKEY_${this.props.postCardId}`,
   }
 
   componentDidMount() {
-    const { postCardId } = this.props;
-    const STORAGE_KEY = `REPLYKEY_${postCardId}`;
-    const replyStore = getLocalStorage(STORAGE_KEY);
-    replyStore && this.setState({ replys: [...replyStore] });
+    const replys = this.getReplys();
+    this.setState({ replys });
+  }
+
+  getReplys = () => {
+    const { REPLY_KEY } = this.state;
+    return getLocalStorage(REPLY_KEY) || [];
+  }
+
+  setStorage = (replys) => {
+    const { REPLY_KEY } = this.state;
+    saveLocalStorage(REPLY_KEY, replys);
+    this.setState({ replys });
+  }
+
+  makeOptions = () => {
+    const options = { ...replyItemOptions };
+    const handlerMap = {
+      REPORT: () => this.handleReport(),
+      DELETE: id => this.handleDeleteReply(id),
+    };
+    Object.keys(options).forEach((option) => {
+      options[option].handler = handlerMap[option];
+    });
+    return Object.values(options);
+  }
+
+  handleReport = () => {
+    console.log('REPORT');
+  }
+
+  handleDeleteReply = (replyId) => {
+    const replys = this.getReplys();
+    const filtered = replys.filter(({ id }) => id !== replyId);
+    this.setStorage(filtered);
   }
 
   addReply = (replyText) => {
@@ -27,17 +68,14 @@ class ReplyBox extends Component {
       replyText,
       userId,
     };
-    const { postCardId } = this.props;
-    const STORAGE_KEY = `REPLYKEY_${postCardId}`;
-    let replys = getLocalStorage(STORAGE_KEY) || [];
-    replys = [...replys, replyData];
-    saveLocalStorage(STORAGE_KEY, replys);
-    this.setState({ replys });
+    const replys = this.getReplys();
+    const updateData = [...replys, replyData];
+    this.setStorage(updateData);
   }
 
   render() {
     const {
-      userId, replyCounts = 0, userProfileImg = DefaultUserProfileImg, postCardId,
+      userId, userProfileImg = DefaultUserProfileImg, postCardId,
     } = this.props;
     const { replys } = this.state;
     return (
@@ -49,6 +87,7 @@ class ReplyBox extends Component {
           userId={userId}
           userProfileImg={userProfileImg}
           replys={replys}
+          options={this.makeOptions()}
         />
         <ReplyFooter
           postCardId={postCardId}
