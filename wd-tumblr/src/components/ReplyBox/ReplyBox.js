@@ -21,19 +21,15 @@ class ReplyBox extends Component {
   }
 
   componentDidMount() {
-    const replyStore = this.getReplys();
-    this.setReplys(replyStore);
+    const replys = this.getReplys();
+    this.setState({ replys });
   }
 
   getReplys = () => getLocalStorage(this.getStorageKey()) || []
 
-  setReplys = (replys) => {
+  setStorage = (replys) => {
+    saveLocalStorage(this.getStorageKey(), replys);
     this.setState({ replys });
-  }
-
-  setStorage = (updateData) => {
-    saveLocalStorage(this.getStorageKey(), updateData);
-    this.setReplys(updateData);
   }
 
   getStorageKey = () => `REPLYKEY_${this.props.postCardId}`
@@ -71,8 +67,7 @@ class ReplyBox extends Component {
     };
     const replys = this.getReplys();
     const updateData = [...replys, replyData];
-    saveLocalStorage(this.getStorageKey(), updateData);
-    this.setReplys(updateData);
+    this.setStorage(updateData);
   }
 
   render() {

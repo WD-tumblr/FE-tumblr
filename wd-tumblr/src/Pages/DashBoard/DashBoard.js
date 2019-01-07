@@ -9,6 +9,7 @@ import Input from '../../components/common/Input';
 import PostCardList from '../../components/PostCardList';
 import { cardFooterOptions } from './cardFooterOptions';
 
+
 class DashBoard extends Component {
   state = {
     show: false,
@@ -18,20 +19,16 @@ class DashBoard extends Component {
 
   componentDidMount() {
     const posts = this.getPosts();
-    this.setPostCards(posts);
+    this.setState({ postCards: posts });
   }
 
   getStorageKey = () => 'POST_KEY'
 
   getPosts = () => getLocalStorage(this.getStorageKey()) || []
 
-  setPostCards = (postCards) => {
-    this.setState({ postCards });
-  }
-
   setStorage(updateData) {
     saveLocalStorage(this.getStorageKey(), updateData);
-    this.setPostCards(updateData);
+    this.setState({ postCards: updateData });
   }
 
   handleEdit() {
