@@ -15,6 +15,7 @@ class DashBoard extends Component {
     show: false,
     userId: 'Dali',
     postCards: [],
+    STORAGE_KEY: 'POST_KEY',
   }
 
   componentDidMount() {
@@ -22,12 +23,14 @@ class DashBoard extends Component {
     this.setState({ postCards: posts });
   }
 
-  getStorageKey = () => 'POST_KEY'
-
-  getPosts = () => getLocalStorage(this.getStorageKey()) || []
+  getPosts = () => {
+    const { STORAGE_KEY } = this.state;
+    return getLocalStorage(STORAGE_KEY) || [];
+  }
 
   setStorage(updateData) {
-    saveLocalStorage(this.getStorageKey(), updateData);
+    const { STORAGE_KEY } = this.state;
+    saveLocalStorage(STORAGE_KEY, updateData);
     this.setState({ postCards: updateData });
   }
 
@@ -88,11 +91,10 @@ class DashBoard extends Component {
   }
 
   savePostData = (postData) => {
-    const STORAGE_KEY = 'POST_KEY';
+    const { STORAGE_KEY } = this.state;
     let lastData = getLocalStorage(STORAGE_KEY) || [];
     lastData = [postData, ...lastData];
-    saveLocalStorage(STORAGE_KEY, lastData);
-    this.setState({ postCards: [...lastData] });
+    this.setStorage(lastData);
   }
 
   render() {

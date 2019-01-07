@@ -9,6 +9,7 @@ import { getLocalStorage, saveLocalStorage } from '../../helper';
 import shortid from 'shortid';
 import replyItemOptions from './replyItemOptions';
 
+
 class ReplyBox extends Component {
   static propTypes = {
     userId: PropTypes.string,
@@ -18,6 +19,7 @@ class ReplyBox extends Component {
 
   state = {
     replys: [],
+    REPLY_KEY: `REPLYKEY_${this.props.postCardId}`,
   }
 
   componentDidMount() {
@@ -25,15 +27,16 @@ class ReplyBox extends Component {
     this.setState({ replys });
   }
 
-  getReplys = () => getLocalStorage(this.getStorageKey()) || []
-
-  setStorage = (replys) => {
-    saveLocalStorage(this.getStorageKey(), replys);
-    this.setState({ replys });
+  getReplys = () => {
+    const { REPLY_KEY } = this.state;
+    return getLocalStorage(REPLY_KEY) || [];
   }
 
-  getStorageKey = () => `REPLYKEY_${this.props.postCardId}`
-
+  setStorage = (replys) => {
+    const { REPLY_KEY } = this.state;
+    saveLocalStorage(REPLY_KEY, replys);
+    this.setState({ replys });
+  }
 
   makeOptions = () => {
     const options = { ...replyItemOptions };
