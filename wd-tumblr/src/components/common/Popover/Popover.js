@@ -2,11 +2,11 @@ import React from 'react';
 import './Popover.scss';
 
 
-const Popover = ({ isOpen, children }) => {
+const Popover = ({ isOpen, children, popOverClass }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="popover__container">
+    <div className={popOverClass}>
       {children}
     </div>
   );

@@ -5,6 +5,7 @@ import PostCardHeader from './PostCardHeader';
 import PostCardContent from './PostCardContet';
 import PostCardFooter from './PostCardFooter';
 import PropTypes from 'prop-types';
+import { toggleState } from '../../../helper';
 
 class PostCard extends Component {
   static propTypes = {
@@ -24,15 +25,10 @@ class PostCard extends Component {
     popupState: false,
   }
 
-  handleReplyButtonClick = (e) => {
-    e.preventDefault();
-    this.setState(prevState => ({ popupState: !prevState.popupState }));
-  }
+  handleReplyButtonClick = () => this.setState(toggleState('popupState'));
 
-  handleOptionButtonClick = (e) => {
-    e.preventDefault();
-    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
-  };
+
+  handleOptionButtonClick = () => this.setState(toggleState('isOpen'))
 
   render() {
     const {

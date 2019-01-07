@@ -3,6 +3,7 @@ import PopUp from '../../common/PopUp';
 import Popover from '../../common/Popover';
 import ReplyBox from '../../ReplyBox';
 import Options from '../../common/Options';
+import IconButton from '../../common/IconButton';
 
 
 const PostCardFooter = ({
@@ -14,50 +15,35 @@ const PostCardFooter = ({
   <div className="postCard__footer">
     <div className="notes__container" />
     <ul className="postCard__buttons">
-      <li className="postCard__button">
-        <a className="postCard__button-link">
-          <i className="postCard__icon-share" />
-        </a>
-      </li>
-      <li className="postCard__button">
-        <a
-          className="postCard__button-link"
-          onClick={handleReplyButtonClick}
-        >
-          <i className="postCard__icon-reply" />
-        </a>
-        <PopUp popupState={popupState}>
-          <ReplyBox
-            postCardId={postCardId}
-            userId={userId}
-          />
-        </PopUp>
-      </li>
-      <li className="postCard__button">
-        <a className="postCard__button-link" href="">
-          <i className="postCard__icon-reblog" />
-        </a>
-      </li>
-      <li className="postCard__button">
-        <a
-          className="postCard__button-link"
-          href=""
-          onClick={handleOptionButtonClick}
-        >
-          <i
-            className="postCard__icon-options"
+      <IconButton iconClassName="postCard__icon-share" />
+      <IconButton
+        iconClassName="postCard__icon-reply"
+        onClick={handleReplyButtonClick}
+        children={(
+          <PopUp popupState={popupState}>
+            <ReplyBox
+              postCardId={postCardId}
+              userId={userId}
+            />
+          </PopUp>
+        )}
+      />
+      <IconButton iconClassName="postCard__icon-reblog" />
+      <IconButton
+        iconClassName="postCard__icon-options"
+        onClick={handleOptionButtonClick}
+        children={(
+          <Popover
+            isOpen={isOpen}
+            popOverClass="popover__container"
           >
-            <Popover
-              isOpen={isOpen}
-            >
-              <Options
-                optionId={postCardId}
-                options={options}
-              />
-            </Popover>
-          </i>
-        </a>
-      </li>
+            <Options
+              optionId={postCardId}
+              options={options}
+            />
+          </Popover>
+        )}
+      />
     </ul>
   </div>
 );
